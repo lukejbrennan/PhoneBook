@@ -1,9 +1,13 @@
 package com.example.luke.phonebook;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -21,6 +25,8 @@ import org.json.JSONObject;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,7 +54,14 @@ public class MainActivity extends AppCompatActivity {
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
-
+        lvPhone.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+                Intent intent = new Intent(MainActivity.this, ContactDetailActivity.class);
+                startActivity(intent);
+            }
+        });
     }
     protected void populateList(JSONArray contactArray) throws JSONException {
         for (int i = 0; i < contactArray.length(); i++) {
@@ -65,7 +78,12 @@ public class MainActivity extends AppCompatActivity {
             JSONObject phoneJSON = contactJSON.getJSONObject("phone");
             String work = phoneJSON.getString("work");
             String home = phoneJSON.getString("home");
-            String mobile = phoneJSON.getString("mobile");
+            String mobile;
+            if(phoneJSON.has("mobile")){
+                mobile = phoneJSON.getString("mobile");
+            } else {
+                mobile = "";
+            }
             //Get Address
             JSONObject addrJSON = contactJSON.getJSONObject("address");
             String street = addrJSON.getString("street");
@@ -74,14 +92,9 @@ public class MainActivity extends AppCompatActivity {
             String country = addrJSON.getString("country");
             String zip = addrJSON.getString("zip");
             //... and so on with address...//
-            listPhoneBook.add(new PhoneBook(name, company, smallImageUrl, largeImageURL, email, website, work, home, mobile, street, city, state, country, zip));
-/*
-            ImageView imageView = (ImageView) findViewById(R.id.imgAvatar);
 
-            Picasso.with(this)
-                    .load(smallImageUrl)
-                    .into(imageView);
-*/
+            listPhoneBook.add(new PhoneBook(name, company, smallImageUrl, largeImageURL, email, website, work, home, mobile, street, city, state, country, zip));
+
         }
 
         adapter.notifyDataSetChanged();

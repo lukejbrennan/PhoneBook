@@ -12,6 +12,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class PhoneBookAdapter extends BaseAdapter{
@@ -47,14 +49,17 @@ public class PhoneBookAdapter extends BaseAdapter{
             arg1 = inflater.inflate(R.layout.phonebook_row, null);
         }
 
-        //ImageView ivAvatar = (ImageView)arg1.findViewById(R.id.imgAvatar);
-        //ivAvatar.setImageBitmap(entry.getmAvatar());
+        ImageView ivAvatar = (ImageView)arg1.findViewById(R.id.imgAvatar);
+        Picasso.with(mContext)
+                .load(entry.getmSmallImageURL())
+                .placeholder(mContext.getDrawable(R.drawable.droidbug))
+                .into(ivAvatar);//ivAvatar.setImageBitmap(entry.getmAvatar());
 
         TextView tvName = (TextView)arg1.findViewById(R.id.tvName);
         tvName.setText(entry.getmName());
 
         TextView tvPhone = (TextView)arg1.findViewById(R.id.tvPhone);
-        tvPhone.setText(entry.getmMobile());
+        tvPhone.setText(entry.getmWork());
 
 
 
