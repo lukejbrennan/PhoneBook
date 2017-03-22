@@ -1,22 +1,16 @@
 package com.example.luke.phonebook;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.luke.phonebook.utilities.NetworkUtils;
-import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,13 +20,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.provider.AlarmClock.EXTRA_MESSAGE;
-
 public class MainActivity extends AppCompatActivity {
 
     private ListView lvPhone;
-    private List<PhoneBook> listPhoneBook;
-    PhoneBookAdapter adapter;
+    private List<Contact> listPhoneBook;
+    ContactAdapter adapter;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -45,9 +37,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         lvPhone = (ListView) findViewById(R.id.listPhone);
-        listPhoneBook = new ArrayList<PhoneBook>();
+        listPhoneBook = new ArrayList<Contact>();
         //Populate phone book with JSON data//
-        adapter = new PhoneBookAdapter(this, listPhoneBook);
+        adapter = new ContactAdapter(this, listPhoneBook);
         lvPhone.setAdapter(adapter);
         new FetchNetworkData().execute("https://s3.amazonaws.com/technical-challenge/Contacts_v2.json");
         adapter.notifyDataSetChanged();
@@ -59,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
                 Intent intent = new Intent(MainActivity.this, ContactDetailActivity.class);
+                intent.putExtra("contact", listPhoneBook.get(position));
                 startActivity(intent);
             }
         });
@@ -93,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
             String zip = addrJSON.getString("zip");
             //... and so on with address...//
 
-            listPhoneBook.add(new PhoneBook(name, company, smallImageUrl, largeImageURL, email, website, work, home, mobile, street, city, state, country, zip));
+            listPhoneBook.add(new Contact(name, company, smallImageUrl, largeImageURL, email, website, work, home, mobile, street, city, state, country, zip));
 
         }
 

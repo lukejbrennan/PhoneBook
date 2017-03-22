@@ -16,12 +16,12 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class PhoneBookAdapter extends BaseAdapter{
+public class ContactAdapter extends BaseAdapter{
 
     private Context mContext;
-    private List<PhoneBook> mListPhoneBook;
+    private List<Contact> mListPhoneBook;
 
-    public PhoneBookAdapter(Context context, List<PhoneBook> list){
+    public ContactAdapter(Context context, List<Contact> list){
         mContext = context;
         mListPhoneBook = list;
     }
@@ -42,7 +42,7 @@ public class PhoneBookAdapter extends BaseAdapter{
 
     @Override
     public View getView(int arg0, View arg1, ViewGroup arg2){
-        PhoneBook entry = mListPhoneBook.get(arg0);
+        Contact entry = mListPhoneBook.get(arg0);
 
         if(arg1 == null){
             LayoutInflater inflater = LayoutInflater.from(mContext);

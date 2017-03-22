@@ -1,11 +1,13 @@
 package com.example.luke.phonebook;
 
-import android.graphics.Bitmap;
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by Luke on 3/20/2017.
  */
 
-public class PhoneBook {
+public class Contact implements Parcelable {
 
     //private Bitmap mAvatar;
     private String mName;
@@ -28,7 +30,7 @@ public class PhoneBook {
     //private String myLong;
 
 
-    public PhoneBook(String mName, String mCompany, String mSmallImageURL, String mLargeImageURL, String mEmail, String mWebsite, String mWork, String mHome, String mMobile, String mStreet, String mCity, String mState, String mCountry, String mZip) {
+    public Contact(String mName, String mCompany, String mSmallImageURL, String mLargeImageURL, String mEmail, String mWebsite, String mWork, String mHome, String mMobile, String mStreet, String mCity, String mState, String mCountry, String mZip) {
         this.mName = mName;
         this.mCompany = mCompany;
         this.mSmallImageURL = mSmallImageURL;
@@ -43,6 +45,31 @@ public class PhoneBook {
         this.mState = mState;
         this.mCountry = mCountry;
         this.mZip = mZip;
+    }
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(mName);
+        dest.writeString(mCompany);
+    }
+    public static final Parcelable.Creator<Contact> CREATOR = new Parcelable.Creator<Contact>() {
+        public Contact createFromParcel(Parcel in) {
+            return new Contact(in);
+        }
+
+        public Contact[] newArray(int size) {
+            return new Contact[size];
+        }
+    };
+
+    // example constructor that takes a Parcel and gives you an object populated with it's values
+    private Contact(Parcel in) {
+        mName= in.readString();
+        mCompany = in.readString();
     }
 
     public String getmName() {
@@ -155,6 +182,8 @@ public class PhoneBook {
     public void setmZip(String mZip) {
         this.mZip = mZip;
     }
+
+
 }
 
 
