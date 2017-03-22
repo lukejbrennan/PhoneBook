@@ -11,19 +11,24 @@
         android:scaleType="fitCenter"
         android:background="@android:color/transparent"
         android:src="@drawable/droidbug"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
     />
     <LinearLayout android:orientation="vertical"
         android:layout_width="match_parent"
         android:background="@android:color/transparent"
         android:layout_height="wrap_content">
 
+
         <TextView android:id="@+id/tvName"
+            android:padding="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textSize="25dip"
+            android:textSize="25sp"
             />
         <TextView android:id="@+id/tvPhone"
+            android:padding="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />

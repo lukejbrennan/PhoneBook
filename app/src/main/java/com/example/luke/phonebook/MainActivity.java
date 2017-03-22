@@ -18,6 +18,8 @@ import org.json.JSONObject;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -77,6 +79,10 @@ public class MainActivity extends AppCompatActivity {
                 listPhoneBook.get(position).setmZip(data.getStringExtra("editZip"));
             }
         }
+        //Alphabetize Phonebook if necessary
+        Collections.sort(listPhoneBook, new AlphabetizeContacts());
+        //Notify Adapter that our data may have been edited by the user
+        adapter.notifyDataSetChanged();
 
     }
 
@@ -113,8 +119,14 @@ public class MainActivity extends AppCompatActivity {
             listPhoneBook.add(new Contact(name, company, smallImageUrl, largeImageURL, email, website, work, home, mobile, street, city, state, country, zip));
 
         }
-
+        Collections.sort(listPhoneBook, new AlphabetizeContacts());
         adapter.notifyDataSetChanged();
+    }
+    public class AlphabetizeContacts implements Comparator<Contact> {
+        @Override
+        public int compare(Contact o1, Contact o2) {
+            return o1.getmName().compareTo(o2.getmName());
+        }
     }
 
     public class FetchNetworkData extends AsyncTask<String, Void, String> {
