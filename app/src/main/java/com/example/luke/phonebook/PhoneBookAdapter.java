@@ -54,7 +54,7 @@ public class PhoneBookAdapter extends BaseAdapter{
         tvName.setText(entry.getmName());
 
         TextView tvPhone = (TextView)arg1.findViewById(R.id.tvPhone);
-        tvPhone.setText(entry.getmPhone());
+        tvPhone.setText(entry.getmMobile());
 
 
 

@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
             String largeImageURL = contactJSON.getString("largeImageURL");
             String email = contactJSON.getString("email");
             String website = contactJSON.getString("website");
+
             //Get Phone
             JSONObject phoneJSON = contactJSON.getJSONObject("phone");
             String work = phoneJSON.getString("work");
@@ -68,15 +69,22 @@ public class MainActivity extends AppCompatActivity {
             //Get Address
             JSONObject addrJSON = contactJSON.getJSONObject("address");
             String street = addrJSON.getString("street");
+            String city = addrJSON.getString("city");
+            String state = addrJSON.getString("state");
+            String country = addrJSON.getString("country");
+            String zip = addrJSON.getString("zip");
             //... and so on with address...//
+            listPhoneBook.add(new PhoneBook(name, company, smallImageUrl, largeImageURL, email, website, work, home, mobile, street, city, state, country, zip));
+/*
+            ImageView imageView = (ImageView) findViewById(R.id.imgAvatar);
+
+            Picasso.with(this)
+                    .load(smallImageUrl)
+                    .into(imageView);
+*/
         }
-        listPhoneBook.add(new PhoneBook(name, mobile, email));
-        ImageView imageView = (ImageView) findViewById(R.id.imgAvatar);
 
-        Picasso.with(this)
-                .load(smallImageUrl)
-                .into(imageView);
-
+        adapter.notifyDataSetChanged();
     }
 
     public class FetchNetworkData extends AsyncTask<String, Void, String> {
@@ -102,7 +110,6 @@ public class MainActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            adapter.notifyDataSetChanged();
 
         }
     }
