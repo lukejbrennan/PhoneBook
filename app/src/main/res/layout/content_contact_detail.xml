@@ -18,39 +18,45 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
         <!--All Contacts and Edit Buttons-->
+        <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Edit Contact"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-        <ImageView android:id="@+id/imgAvatar"
-            android:layout_width="70dip"
-            android:layout_height="70dip"
-            android:scaleType="fitCenter"
-            android:src="@drawable/droidbug"
-            />
-        <LinearLayout android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView android:id="@+id/tvName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
+            <ImageView android:id="@+id/imgAvatar"
+                android:layout_width="70dip"
+                android:layout_height="70dip"
+                android:scaleType="fitCenter"
+                android:src="@drawable/droidbug"
                 />
-            <TextView android:id="@+id/tvPhone"
+            <LinearLayout android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
+                android:layout_height="wrap_content">
+                <!--Name Label and Edit-->
+                <TextView
+                    android:text="Name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+                <EditText android:id="@+id/et_name"
+                    android:text="Name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <!--Company Label and Edit-->
+                <TextView
+                    android:text="Company"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+                <EditText android:id="@+id/et_company"
+                    android:text="Company"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-
 </RelativeLayout>
