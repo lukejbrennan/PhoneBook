@@ -69,6 +69,12 @@ public class MainActivity extends AppCompatActivity {
                 listPhoneBook.get(position).setmName(data.getStringExtra("editName"));
                 listPhoneBook.get(position).setmCompany(data.getStringExtra("editCompany"));
                 listPhoneBook.get(position).setmWork(data.getStringExtra("editWork"));
+                listPhoneBook.get(position).setmHome(data.getStringExtra("editHome"));
+                listPhoneBook.get(position).setmMobile(data.getStringExtra("editMobile"));
+                listPhoneBook.get(position).setmStreet(data.getStringExtra("editStreet"));
+                listPhoneBook.get(position).setmCity(data.getStringExtra("editCity"));
+                listPhoneBook.get(position).setmCountry(data.getStringExtra("editCountry"));
+                listPhoneBook.get(position).setmZip(data.getStringExtra("editZip"));
             }
         }
 

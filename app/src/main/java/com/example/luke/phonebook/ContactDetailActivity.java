@@ -28,6 +28,12 @@ public class ContactDetailActivity extends AppCompatActivity {
     EditText nameEditText;
     EditText companyEditText;
     EditText workEditText;
+    EditText homeEditText;
+    EditText mobileEditText;
+    EditText streetEditText;
+    EditText cityEditText;
+    EditText countryEditText;
+    EditText zipEditText;
     Button editButton;
     Boolean editFrozen;
     @Override
@@ -45,6 +51,8 @@ public class ContactDetailActivity extends AppCompatActivity {
                 onEditButtonTouched();
             }
         });
+
+        //Receive parcel from main activity
         Intent i = getIntent();
         contact = (Contact) i.getParcelableExtra("contact");
         position = i.getIntExtra("position", -1);
@@ -64,6 +72,24 @@ public class ContactDetailActivity extends AppCompatActivity {
 
         workEditText= (EditText) findViewById(R.id.et_work);
         workEditText.setText(contact.getmWork(), TextView.BufferType.EDITABLE);
+
+        homeEditText= (EditText) findViewById(R.id.et_home);
+        homeEditText.setText(contact.getmHome(), TextView.BufferType.EDITABLE);
+
+        mobileEditText= (EditText) findViewById(R.id.et_mobile);
+        mobileEditText.setText(contact.getmMobile(), TextView.BufferType.EDITABLE);
+
+        streetEditText= (EditText) findViewById(R.id.et_street);
+        streetEditText.setText(contact.getmStreet(), TextView.BufferType.EDITABLE);
+
+        cityEditText= (EditText) findViewById(R.id.et_city);
+        cityEditText.setText(contact.getmCity(), TextView.BufferType.EDITABLE);
+
+        countryEditText= (EditText) findViewById(R.id.et_country);
+        countryEditText.setText(contact.getmCountry(), TextView.BufferType.EDITABLE);
+
+        zipEditText= (EditText) findViewById(R.id.et_zip);
+        zipEditText.setText(contact.getmZip(), TextView.BufferType.EDITABLE);
     }
 
     private void toEditMode(){
@@ -73,12 +99,38 @@ public class ContactDetailActivity extends AppCompatActivity {
         nameEditText.setFocusable(true);
         nameEditText.setClickable(true);
         nameEditText.setSelectAllOnFocus(true);
+
         companyEditText.setFocusableInTouchMode(true);
         companyEditText.setFocusable(true);
         companyEditText.setClickable(true);
+
         workEditText.setFocusableInTouchMode(true);
         workEditText.setFocusable(true);
         workEditText.setClickable(true);
+
+        homeEditText.setFocusableInTouchMode(true);
+        homeEditText.setFocusable(true);
+        homeEditText.setClickable(true);
+
+        mobileEditText.setFocusableInTouchMode(true);
+        mobileEditText.setFocusable(true);
+        mobileEditText.setClickable(true);
+
+        streetEditText.setFocusableInTouchMode(true);
+        streetEditText.setFocusable(true);
+        streetEditText.setClickable(true);
+
+        cityEditText.setFocusableInTouchMode(true);
+        cityEditText.setFocusable(true);
+        cityEditText.setClickable(true);
+
+        countryEditText.setFocusableInTouchMode(true);
+        countryEditText.setFocusable(true);
+        countryEditText.setClickable(true);
+
+        zipEditText.setFocusableInTouchMode(true);
+        zipEditText.setFocusable(true);
+        zipEditText.setClickable(true);
         //change edit name to save
         editButton.setText("Save Contact");
     }
@@ -97,6 +149,30 @@ public class ContactDetailActivity extends AppCompatActivity {
         workEditText.setFocusableInTouchMode(false);
         workEditText.setFocusable(false);
         workEditText.setClickable(false);
+
+        homeEditText.setFocusableInTouchMode(false);
+        homeEditText.setFocusable(false);
+        homeEditText.setClickable(false);
+
+        mobileEditText.setFocusableInTouchMode(false);
+        mobileEditText.setFocusable(false);
+        mobileEditText.setClickable(false);
+
+        streetEditText.setFocusableInTouchMode(false);
+        streetEditText.setFocusable(false);
+        streetEditText.setClickable(false);
+
+        countryEditText.setFocusableInTouchMode(false);
+        countryEditText.setFocusable(false);
+        countryEditText.setClickable(false);
+
+        cityEditText.setFocusableInTouchMode(false);
+        cityEditText.setFocusable(false);
+        cityEditText.setClickable(false);
+
+        zipEditText.setFocusableInTouchMode(false);
+        zipEditText.setFocusable(false);
+        zipEditText.setClickable(false);
         //change edit name to edit
         editButton.setText("Edit Contact");
 
@@ -106,6 +182,12 @@ public class ContactDetailActivity extends AppCompatActivity {
         intent.putExtra("editName", nameEditText.getText().toString());
         intent.putExtra("editCompany", companyEditText.getText().toString());
         intent.putExtra("editWork", workEditText.getText().toString());
+        intent.putExtra("editHome", homeEditText.getText().toString());
+        intent.putExtra("editMobile", mobileEditText.getText().toString());
+        intent.putExtra("editStreet", streetEditText.getText().toString());
+        intent.putExtra("editCity", cityEditText.getText().toString());
+        intent.putExtra("editCountry", countryEditText.getText().toString());
+        intent.putExtra("editZip", zipEditText.getText().toString());
         setResult(RESULT_OK, intent);
         finish();
     }

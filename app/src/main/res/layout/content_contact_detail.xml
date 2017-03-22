@@ -9,6 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:padding="5dp"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.luke.phonebook.ContactDetailActivity"
@@ -42,6 +43,8 @@
                     android:layout_height="wrap_content"
                     />
                 <EditText android:id="@+id/et_name"
+                    android:background="@android:color/transparent"
+                    android:textStyle="bold"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
                     android:clickable="false"
@@ -56,6 +59,8 @@
                     android:layout_height="wrap_content"
                     />
                 <EditText android:id="@+id/et_company"
+                    android:background="@android:color/transparent"
+                    android:textStyle="bold"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
                     android:clickable="false"
@@ -71,11 +76,76 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+
             <TextView
                 android:text="Work"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <EditText android:id="@+id/et_work"
+                android:textStyle="bold"
+                android:background="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:clickable="false" />
+
+            <TextView
+                android:text="Home"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <EditText android:id="@+id/et_home"
+                android:textStyle="bold"
+                android:background="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:clickable="false" />
+            <TextView
+                android:text="Mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <EditText android:id="@+id/et_mobile"
+                android:textStyle="bold"
+                android:background="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:clickable="false" />
+            <TextView
+                android:text="Address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <EditText android:id="@+id/et_street"
+                android:textStyle="bold"
+                android:background="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:clickable="false" />
+            <EditText android:id="@+id/et_city"
+                android:textStyle="bold"
+                android:background="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:clickable="false" />
+            <EditText android:id="@+id/et_country"
+                android:textStyle="bold"
+                android:background="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:clickable="false" />
+            <EditText android:id="@+id/et_zip"
+                android:textStyle="bold"
+                android:background="@android:color/transparent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:focusable="false"
