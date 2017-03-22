@@ -55,6 +55,19 @@ public class Contact implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(mName);
         dest.writeString(mCompany);
+        dest.writeString(mSmallImageURL);
+        dest.writeString(mLargeImageURL);
+        dest.writeString(mEmail);
+        dest.writeString(mWebsite);
+        dest.writeString(mWork);
+        dest.writeString(mHome);
+        dest.writeString(mMobile);
+        dest.writeString(mStreet);
+        dest.writeString(mCity);
+        dest.writeString(mState);
+        dest.writeString(mCountry);
+        dest.writeString(mZip);
+
     }
     public static final Parcelable.Creator<Contact> CREATOR = new Parcelable.Creator<Contact>() {
         public Contact createFromParcel(Parcel in) {
@@ -70,6 +83,18 @@ public class Contact implements Parcelable {
     private Contact(Parcel in) {
         mName= in.readString();
         mCompany = in.readString();
+        mSmallImageURL = in.readString();
+        mLargeImageURL = in.readString();
+        mEmail = in.readString();
+        mWebsite = in.readString();
+        mWork = in.readString();
+        mHome = in.readString();
+        mMobile = in.readString();
+        mStreet = in.readString();
+        mCity = in.readString();
+        mState = in.readString();
+        mCountry = in.readString();
+        mZip = in.readString();
     }
 
     public String getmName() {

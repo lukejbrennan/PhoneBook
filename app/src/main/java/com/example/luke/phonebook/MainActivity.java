@@ -66,8 +66,9 @@ public class MainActivity extends AppCompatActivity {
         if(requestCode == 1){
             if(resultCode == RESULT_OK){
                 position = data.getIntExtra("position", 0);
-                //name = data.getStringExtra("")
                 listPhoneBook.get(position).setmName(data.getStringExtra("editName"));
+                listPhoneBook.get(position).setmCompany(data.getStringExtra("editCompany"));
+                listPhoneBook.get(position).setmWork(data.getStringExtra("editWork"));
             }
         }
 

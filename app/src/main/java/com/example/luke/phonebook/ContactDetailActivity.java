@@ -27,6 +27,7 @@ public class ContactDetailActivity extends AppCompatActivity {
     int position;
     EditText nameEditText;
     EditText companyEditText;
+    EditText workEditText;
     Button editButton;
     Boolean editFrozen;
     @Override
@@ -36,11 +37,6 @@ public class ContactDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_contact_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        //ActionBar actionBar = getSupportActionBar();
-        //actionBar.setHomeButtonEnabled(true);
-        //actionBar.setDisplayHomeAsUpEnabled(true);
-
 
         editButton = (Button) findViewById(R.id.edit_button);
         editButton.setOnClickListener(new View.OnClickListener() {
@@ -52,57 +48,66 @@ public class ContactDetailActivity extends AppCompatActivity {
         Intent i = getIntent();
         contact = (Contact) i.getParcelableExtra("contact");
         position = i.getIntExtra("position", -1);
+
         //Set Image with Picasso
         ImageView ivAvatar = (ImageView) findViewById(R.id.imgAvatar);
         Picasso.with(this)
                 .load(contact.getmLargeImageURL())
-                .placeholder(this.getDrawable(R.drawable.droidbug))
+                .placeholder(R.drawable.droidbug)
                 .into(ivAvatar);
-        //Log.d("Luke",contact.getmLargeImageURL());
 
         nameEditText= (EditText) findViewById(R.id.et_name);
         nameEditText.setText(contact.getmName(), TextView.BufferType.EDITABLE );
 
         companyEditText= (EditText)findViewById(R.id.et_company);
         companyEditText.setText(contact.getmCompany(), TextView.BufferType.EDITABLE);
+
+        workEditText= (EditText) findViewById(R.id.et_work);
+        workEditText.setText(contact.getmWork(), TextView.BufferType.EDITABLE);
     }
 
     private void toEditMode(){
         editFrozen = false;
-        //change everything to true
+        //change editing capabilities to true
         nameEditText.setFocusableInTouchMode(true);
+        nameEditText.setFocusable(true);
+        nameEditText.setClickable(true);
+        nameEditText.setSelectAllOnFocus(true);
         companyEditText.setFocusableInTouchMode(true);
+        companyEditText.setFocusable(true);
+        companyEditText.setClickable(true);
+        workEditText.setFocusableInTouchMode(true);
+        workEditText.setFocusable(true);
+        workEditText.setClickable(true);
         //change edit name to save
         editButton.setText("Save Contact");
     }
 
     private void toViewMode(){
         editFrozen = true;
-        //change everthing to false
+        //disable editing capabilities
         nameEditText.setFocusableInTouchMode(false);
+        nameEditText.setFocusable(false);
+        nameEditText.setClickable(false);
+
         companyEditText.setFocusableInTouchMode(false);
+        companyEditText.setFocusable(false);
+        companyEditText.setClickable(false);
+
+        workEditText.setFocusableInTouchMode(false);
+        workEditText.setFocusable(false);
+        workEditText.setClickable(false);
         //change edit name to edit
         editButton.setText("Edit Contact");
-        //change values if they are different
+
+        //update Contact in Contact List
         Intent intent = new Intent();
         intent.putExtra("position", position);
         intent.putExtra("editName", nameEditText.getText().toString());
+        intent.putExtra("editCompany", companyEditText.getText().toString());
+        intent.putExtra("editWork", workEditText.getText().toString());
         setResult(RESULT_OK, intent);
         finish();
-
-
-       /*
-        String currentName = nameEditText.getText().toString();
-        String storedName = contact.getmName();
-        if(!currentName.equals(storedName)){
-            contact.setmName(currentName);
-        }
-        String currentCompany = companyEditText.getText().toString();
-        String storedCompany = contact.getmCompany();
-        if(!currentCompany.equals(storedCompany)){
-            contact.setmCompany(currentCompany);
-        }
-        */
     }
 
     private void onEditButtonTouched(){
