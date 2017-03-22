@@ -52,10 +52,27 @@ public class MainActivity extends AppCompatActivity {
                                     long id) {
                 Intent intent = new Intent(MainActivity.this, ContactDetailActivity.class);
                 intent.putExtra("contact", listPhoneBook.get(position));
-                startActivity(intent);
+                intent.putExtra("position", position);
+                startActivityForResult(intent, 1);
             }
         });
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        int position;
+        //String name;
+        if(requestCode == 1){
+            if(resultCode == RESULT_OK){
+                position = data.getIntExtra("position", 0);
+                //name = data.getStringExtra("")
+                listPhoneBook.get(position).setmName(data.getStringExtra("editName"));
+            }
+        }
+
+    }
+
     protected void populateList(JSONArray contactArray) throws JSONException {
         for (int i = 0; i < contactArray.length(); i++) {
             JSONObject contactJSON = contactArray.getJSONObject(i);

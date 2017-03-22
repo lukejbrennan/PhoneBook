@@ -53,7 +53,7 @@ public class ContactAdapter extends BaseAdapter{
         Picasso.with(mContext)
                 .load(entry.getmSmallImageURL())
                 .placeholder(mContext.getDrawable(R.drawable.droidbug))
-                .into(ivAvatar);//ivAvatar.setImageBitmap(entry.getmAvatar());
+                .into(ivAvatar);
 
         TextView tvName = (TextView)arg1.findViewById(R.id.tvName);
         tvName.setText(entry.getmName());
